@@ -1,12 +1,35 @@
 const mongoose = require('mongoose');
 
-const connectionDB = async () => {
-    try{
-        const DB = await mongoose.connect('mongodb+srv://3HCMq1UPAL1whKfR:3HCMq1UPAL1whKfR@brencluster.irzmg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
-        console.log('Database initialized correctly ');
-    }catch (error){
-        console.log(error);
-    }  
+const connectionDB = () => {
+        mongoose.connect(process.env.MONGO_URI, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        });
+        mongoose.connection.on('error', function(){
+            console.log('It was occur an error');
+        });
 }
 
+/*database (){ 
+    mongoose.connect(process.env.MONGO_URI, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    });
+    mongoose.connection.on('error', function(){
+        console.log('It was occur an error');
+    })
+}*/
+
+/*const connectionDB = async ()=>{
+    try{
+        await  mongoose.connect(process.env.MONGO_URI, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        });
+        await mongoose.connect.on('error', function (){
+            console.log('it can not connect to DB');
+        })
+    }
+}
+*/
 module.exports = connectionDB;
