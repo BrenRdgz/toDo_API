@@ -1,5 +1,5 @@
 const app = require('./server');
 
-app.listen(app.get("port"), ()=>{
+app.listen(app.get("PORT"), ()=>{
     console.log('Server listening' );
 });
