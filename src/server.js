@@ -8,6 +8,9 @@ connectionDB();
 app.set("PORT", process.env.PORT || 3000);
 
 app.use(express.json());
+app.get('/', (req, res) =>{
+    res.send('Hi');
+});
 
 app.use("/todos", routerTasks);
 module.exports = app;
